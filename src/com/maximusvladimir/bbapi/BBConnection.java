@@ -11,6 +11,8 @@ public abstract class BBConnection {
 	private int serverID;
 	private String serverURL;
 	private long serverTimeout;
+	protected boolean connectionEstablished = false;
+	protected boolean loginEstablished = false;
 	/**
 	 * Creates a connection instance.
 	 * @param serverURL The id of the client. This is typically 4-6 digits.
@@ -20,6 +22,22 @@ public abstract class BBConnection {
 	public BBConnection(int serverID, String serverURL) {
 		this.serverURL = serverURL;
 		this.serverID = serverID;
+	}
+	
+	/**
+	 * Is the connection established, and is the user logged in?
+	 * @return
+	 */
+	public boolean isLoggedIn() {
+		return loginEstablished && connectionEstablished;
+	}
+	
+	/**
+	 * Is the client connected to a server?
+	 * @return
+	 */
+	public boolean isConnected() {
+		return connectionEstablished;
 	}
 	
 	/**
